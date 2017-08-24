@@ -46,3 +46,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /target/
+
+# =========================
+# JS files
+# =========================
+
+# Modules
+node_modules/
