@@ -1,4 +1,4 @@
-package br.ufpr.tads.dac.ds.data;
+package br.ufpr.tads.dac.ds.dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
