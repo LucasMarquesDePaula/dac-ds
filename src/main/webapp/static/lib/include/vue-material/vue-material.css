@@ -1,0 +1,25 @@
+body {
+    background-color: #f1f1f1;
+}
+
+body > div#app  {
+    margin-top: 20px;
+}
+.md-card {
+    width: 100%;
+}
+
+.md-card .md-card-actions {
+    min-height: 46px;
+}
+
+.md-avatar {
+    border: #e0e0e0 1px solid;
+}
+
+form {
+    padding: 12px;
+}
+.hidden {
+    display: none;
+}
