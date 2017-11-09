@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>UC003 - CADASTRAR GERENTES / ENTREGADORES</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet prefetch' href='https://unpkg.com/vue-material@latest/dist/vue-material.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div id="app">
+  <md-toolbar id="painel">
+    <md-button class="md-icon-button">
+      <md-icon>menu</md-icon>
+    </md-button>
+    <h1 class="md-title">TADS Delivery System</h1>
+  </md-toolbar>
+  <div class="main-content">
+    <md-table-card>
+      <md-toolbar>
+        <h2 class="md-title" style="flex: 1">Cadastro de Gerentes e Entregadores</h2>
+      </md-toolbar>
+      <form novalidate @submit.stop.prevent="submit">
+
+        <md-layout md-gutter>
+          <md-layout>
+            <md-input-container>
+              <label>Nome</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout>          
+        </md-layout>
+
+        <md-layout md-gutter>
+          <md-layout>
+            <md-input-container>
+              <label>Endereço</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout>          
+        </md-layout>
+
+        <md-layout md-gutter>
+          <md-layout>
+            <md-input-container>
+              <label>Cidade</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout>
+          <md-layout>
+            <md-input-container>
+              <label>Estado</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout>
+        </md-layout>
+
+        <md-layout md-gutter>
+          <md-layout>
+            <md-input-container>
+              <label>CPF</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout>
+          <md-layout>
+            <md-input-container>
+              <label>Telefone</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout><md-layout>
+            <md-input-container>
+              <label>E-mail</label>
+              <md-input></md-input>
+            </md-input-container>
+          </md-layout>          
+        </md-layout>
+
+        <input type="checkbox" id="gerente" value="gerente" style="cursor:pointer"><a id="textoConcluido" onclick="toggleCheckbox()" >Perfil GERENTE</a>
+      </form>
+      
+    </md-table-card>
+    <md-button class="md-fab md-fab-bottom-right" id="salvar">
+      <md-icon>save</md-icon>
+    </md-button>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.min.js'></script>
+<script src='https://unpkg.com/vue-material@latest'></script>
+
+    <script  src="js/index.js"></script>
+
+</body>
+</html>

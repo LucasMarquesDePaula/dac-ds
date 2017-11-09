@@ -1,0 +1,29 @@
+.main-content {
+  margin: 16px;
+}
+
+form {
+  padding: 16px;
+}
+
+#painel {
+  background-color: black;
+}
+
+#salvar {
+  background-color: black;
+}
+
+#textoConcluido {
+  color: black;
+  font-size: 1.2em;
+}
+
+#textoConcluido:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#concluidos {
+  visibility: hidden;
+}

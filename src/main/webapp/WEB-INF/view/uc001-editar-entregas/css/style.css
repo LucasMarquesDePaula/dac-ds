@@ -1,0 +1,54 @@
+.main-content {
+  margin: 16px;
+}
+form {
+  padding: 16px 700px 0px 20px;
+}
+#painel{
+  background-color: black;
+}
+#filtrar{
+  background-color:#333;
+  width:45%;
+}
+#filtrar:hover{
+  background-color:#444;
+  font-size:120%;
+}
+#confirmar{
+  margin-left:1%;
+  width:22%;
+  background-color:#333;
+}
+#confirmar:hover{
+  background-color:green;
+  font-size:120%;
+}
+#problema{
+  margin-left:3%;
+  background-color:#ddd;
+  color:#333;
+  width:15%;
+}
+#problema:hover{
+  font-size:120%;
+  color:red;
+}
+#cancelar{
+  width:15%;
+  margin-left:1%;
+  background-color:#ddd;
+  color:#333;
+}
+#cancelar:hover{
+  color:red;
+  font-size:120%;
+}
+.bt-align {
+margin: 10px 0px 25px 0px; 
+}
+.radio{
+  padding:3px;
+  width:100%;
+  letter-spacing:1px;
+}
