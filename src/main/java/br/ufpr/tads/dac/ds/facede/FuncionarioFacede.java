@@ -1,12 +1,12 @@
 package br.ufpr.tads.dac.ds.facede;
 
-import br.ufpr.tads.dac.lol.dao.Dao;
-import br.ufpr.tads.dac.lol.dao.FuncionarioDao;
-import br.ufpr.tads.dac.lol.model.Funcionario;
+import br.ufpr.tads.dac.ds.dao.Dao;
+import br.ufpr.tads.dac.ds.dao.FuncionarioDao;
+import br.ufpr.tads.dac.ds.model.Funcionario;
 
 /**
  *
- * @author Lucas
+ * @author Tom
  */
 public class FuncionarioFacede extends CrudFacede<Funcionario> {
 

@@ -11,12 +11,12 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name="Entrega.findAll", query="SELECT e FROM Entrega e")
-public class Entrega implements Serializable {
+public class Entrega extends Model<Integer> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private byte cancelado;
 
@@ -65,11 +65,13 @@ public class Entrega implements Serializable {
 	public Entrega() {
 	}
 
-	public int getId() {
+        @Override
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+        @Override
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

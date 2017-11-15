@@ -12,12 +12,13 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Funcionario.findAll", query="SELECT f FROM Funcionario f")
-public class Funcionario implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Funcionario extends Model<Integer> implements Authenticable, Serializable {
+	
+       private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private byte ativo;
 
@@ -47,11 +48,13 @@ public class Funcionario implements Serializable {
 	public Funcionario() {
 	}
 
-	public int getId() {
+       @Override
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+       @Override
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -154,5 +157,25 @@ public class Funcionario implements Serializable {
 
 		return entregasCancelada;
 	}
+
+    @Override
+    public String getUsername() {
+        return this.getEmail();
+    }
+
+    @Override
+    public void setUsername(String userName) {
+        this.setEmail(userName);
+    }
+
+    @Override
+    public String getPassword() {
+        return this.getSenha();
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.setSenha(Authenticable.Util.generateHash(String.format("#%d~!~%s", this.getId(), password)));
+    }
 
 }

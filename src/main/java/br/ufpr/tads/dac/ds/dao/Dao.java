@@ -1,13 +1,17 @@
 package br.ufpr.tads.dac.ds.dao;
 
+import br.ufpr.tads.dac.ds.model.Model;
 import java.io.Serializable;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
-public abstract class Dao<E> {
+public abstract class Dao<E extends Model> {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private static Session session;
 
     private final Class<E> entityClass;
 
@@ -15,16 +19,37 @@ public abstract class Dao<E> {
         this.entityClass = entityClass;
     }
 
-    protected Session getSession() {
-        return this.sessionFactory.getCurrentSession();
+    public static Session getSession() {
+        if (session == null) {
+            session = sessionFactory.openSession();
+        }
+        return session;
+
     }
 
-    public E findById(final Serializable id) {
+    public Transaction beginTransaction() {
+        return getSession().beginTransaction();
+    }
+
+    public void commit() {
+        getSession().getTransaction().commit();
+    }
+
+    public void rollback() {
+        getSession().getTransaction().rollback();
+    }
+
+    public E findById(Serializable id) {
         return (E) getSession().get(this.entityClass, id);
     }
 
-    public Serializable save(E entity) {
-        return getSession().save(entity);
+    public E save(E entity) {
+        if (entity.getId() == null) {
+            getSession().persist(entity);
+        } else {
+            getSession().merge(entity);
+        }
+        return entity;
     }
 
     public void delete(E entity) {
@@ -41,7 +66,11 @@ public abstract class Dao<E> {
     public List<E> findAll() {
         return getSession().createCriteria(this.entityClass).list();
     }
-    
+
+    public Criteria createCriteria() {
+        return getSession().createCriteria(this.entityClass);
+    }
+
     public void clear() {
         getSession().clear();
     }

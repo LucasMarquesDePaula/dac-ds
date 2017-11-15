@@ -1,7 +1,7 @@
 package br.ufpr.tads.dac.ds.facede;
 
-import br.ufpr.tads.dac.lol.dao.Dao;
-import br.ufpr.tads.dac.lol.model.Model;
+import br.ufpr.tads.dac.ds.dao.Dao;
+import br.ufpr.tads.dac.ds.model.Model;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
