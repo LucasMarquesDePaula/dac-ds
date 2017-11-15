@@ -7,7 +7,7 @@
     <short-name>Access to static resources</short-name>
     <tag>
         <name>css</name>
-        <tag-class>br.ufpr.tads.dac.lol.staticx.CssTag</tag-class>
+        <tag-class>br.ufpr.tads.dac.ds.staticx.CssTag</tag-class>
         <body-content>scriptless</body-content>
         <attribute>
             <name>base</name>
@@ -20,7 +20,7 @@
     </tag>
     <tag>
         <name>js</name>
-        <tag-class>br.ufpr.tads.dac.lol.staticx.JsTag</tag-class>
+        <tag-class>br.ufpr.tads.dac.ds.staticx.JsTag</tag-class>
         <body-content>scriptless</body-content>
         <attribute>
             <name>base</name>

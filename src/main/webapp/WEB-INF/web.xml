@@ -5,5 +5,3 @@
         <listener-class>br.ufpr.tads.dac.ds.listener.AppContextListener</listener-class>
     </listener>
 </web-app>
-
-<!-- TOM -->

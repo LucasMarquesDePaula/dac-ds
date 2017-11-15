@@ -16,7 +16,7 @@ public class AppContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         String contextPath = sce.getServletContext().getContextPath();
         sce.getServletContext().setAttribute("app", new HashMap<String, Object>() {{
-            put("name", "Delivery System");
+            put("name", "TADS Delivery System");
             put("contextPath", contextPath);
             put("staticResourcesDir", String.format("%s/static", contextPath));
         }});
