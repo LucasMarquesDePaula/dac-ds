@@ -14,7 +14,7 @@
     <md-list class="md-dense">
         <md-list-item>
             <md-icon>person</md-icon>
-            <span>Funcionario</span>
+            <span>Funcionário</span>
             <md-list-expand>
                 <md-list>
                     <md-list-item class="md-inset" href="/ds/funcionario/grid" >
@@ -33,11 +33,11 @@
             <span>Entregas</span>
             <md-list-expand>
                 <md-list>
-                    <md-list-item class="md-inset" href="/lol/tipo-roupa/grid" >
+                    <md-list-item class="md-inset" href="#" >
                         <span>Editar</span>
                         <md-icon>edit</md-icon> 
                     </md-list-item>
-                    <md-list-item class="md-inset" href="/lol/tipo-roupa/form" >
+                    <md-list-item class="md-inset" href="#" >
                         <span>Cadastrar Manualmente</span>
                         <md-icon>add</md-icon> 
                     </md-list-item>
