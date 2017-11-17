@@ -26,12 +26,10 @@ public class WebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Message get(Message message) {
-        return new Message("hello", new HashMap<String, String>() {
-            {
-                put("arg1", "value1");
-                put("arg2", "value2");
-            }
-        });
+        return new Message(
+                "arg1", "value1",
+                "arg2", "value2"
+        );
     }
 
     @PUT
@@ -44,8 +42,8 @@ public class WebService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Message post(Message message) throws ValidationException {
-        final Map<String, String> parameters = message.getParameters();
-        final Entrega model = new Entrega();
+        Map<String, String> parameters = message.getParameters();
+        Entrega model = new Entrega();
 
         // Valores default
         model.setCancelado((byte) 0x0);
@@ -59,14 +57,10 @@ public class WebService {
         model.setObservacao(parameters.get("observacao"));
         model.setPedidoId(Integer.parseInt(parameters.get("pedidoId")));
 
-        final CrudFacede<Entrega> facede = new EntregaFacede();
+        CrudFacede<Entrega> facede = new EntregaFacede();
 
         facede.save(model);
 
-        return new Message("ok", new HashMap<String, String>() {
-            {
-                put("entregaId", model.getId().toString());
-            }
-        });
+        return new Message("entregaId", model.getId().toString());
     }
 }
