@@ -5,14 +5,12 @@ import br.ufpr.tads.dac.ds.model.Admin;
 import br.ufpr.tads.dac.ds.model.Authenticable;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.criterion.Example;
 
 /**
  *

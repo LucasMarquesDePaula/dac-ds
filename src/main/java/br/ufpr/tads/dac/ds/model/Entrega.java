@@ -1,190 +1,199 @@
 package br.ufpr.tads.dac.ds.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the entrega database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Entrega.findAll", query="SELECT e FROM Entrega e")
+@NamedQuery(name = "Entrega.findAll", query = "SELECT e FROM Entrega e")
 public class Entrega extends Model<Integer> implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+    private static final long serialVersionUID = 1L;
 
-	private byte cancelado;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="data_hora_cadastro")
-	private Date dataHoraCadastro;
+    private byte cancelado;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="data_hora_cancelamento")
-	private Date dataHoraCancelamento;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_cadastro")
+    private Date dataHoraCadastro;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="data_hora_entrega")
-	private Date dataHoraEntrega;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_cancelamento")
+    private Date dataHoraCancelamento;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="data_hora_frustracao_entrega")
-	private Date dataHoraFrustracaoEntrega;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_entrega")
+    private Date dataHoraEntrega;
 
-	private String endereco;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora_frustracao_entrega")
+    private Date dataHoraFrustracaoEntrega;
 
-	@Column(name="entrega_frustrada")
-	private byte entregaFrustrada;
+    private String endereco;
 
-	private byte entregue;
+    @Column(name = "entrega_frustrada")
+    private byte entregaFrustrada;
 
-	@Column(name="justificativa_frustracao_entrega")
-	private String justificativaFrustracaoEntrega;
+    private byte entregue;
 
-	@Column(name="nome_cliente")
-	private String nomeCliente;
+    @Column(name = "justificativa_frustracao_entrega")
+    private String justificativaFrustracaoEntrega;
 
-	private String observacao;
+    @Column(name = "nome_cliente")
+    private String nomeCliente;
 
-	@Column(name="pedido_id")
-	private int pedidoId;
+    private String observacao;
 
-	//bi-directional many-to-one association to Funcionario
-	@ManyToOne
-	private Funcionario funcionario_entrega;
+    @Column(name = "pedido_id")
+    private int pedidoId;
 
-	//bi-directional many-to-one association to Funcionario
-	@ManyToOne
-	private Funcionario funcionario_cancelamento;
+    //bi-directional many-to-one association to Funcionario
+    @ManyToOne
+    private Funcionario funcionarioEntrega;
 
-	public Entrega() {
-	}
+    //bi-directional many-to-one association to Funcionario
+    @ManyToOne
+    private Funcionario funcionarioCancelamento;
 
-        @Override
-	public Integer getId() {
-		return this.id;
-	}
+    public Entrega() {
+    }
 
-        @Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
 
-	public byte getCancelado() {
-		return this.cancelado;
-	}
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setCancelado(byte cancelado) {
-		this.cancelado = cancelado;
-	}
+    public byte getCancelado() {
+        return this.cancelado;
+    }
 
-	public Date getDataHoraCadastro() {
-		return this.dataHoraCadastro;
-	}
+    public void setCancelado(byte cancelado) {
+        this.cancelado = cancelado;
+    }
 
-	public void setDataHoraCadastro(Date dataHoraCadastro) {
-		this.dataHoraCadastro = dataHoraCadastro;
-	}
+    public Date getDataHoraCadastro() {
+        return this.dataHoraCadastro;
+    }
 
-	public Date getDataHoraCancelamento() {
-		return this.dataHoraCancelamento;
-	}
+    public void setDataHoraCadastro(Date dataHoraCadastro) {
+        this.dataHoraCadastro = dataHoraCadastro;
+    }
 
-	public void setDataHoraCancelamento(Date dataHoraCancelamento) {
-		this.dataHoraCancelamento = dataHoraCancelamento;
-	}
+    public Date getDataHoraCancelamento() {
+        return this.dataHoraCancelamento;
+    }
 
-	public Date getDataHoraEntrega() {
-		return this.dataHoraEntrega;
-	}
+    public void setDataHoraCancelamento(Date dataHoraCancelamento) {
+        this.dataHoraCancelamento = dataHoraCancelamento;
+    }
 
-	public void setDataHoraEntrega(Date dataHoraEntrega) {
-		this.dataHoraEntrega = dataHoraEntrega;
-	}
+    public Date getDataHoraEntrega() {
+        return this.dataHoraEntrega;
+    }
 
-	public Date getDataHoraFrustracaoEntrega() {
-		return this.dataHoraFrustracaoEntrega;
-	}
+    public void setDataHoraEntrega(Date dataHoraEntrega) {
+        this.dataHoraEntrega = dataHoraEntrega;
+    }
 
-	public void setDataHoraFrustracaoEntrega(Date dataHoraFrustracaoEntrega) {
-		this.dataHoraFrustracaoEntrega = dataHoraFrustracaoEntrega;
-	}
+    public Date getDataHoraFrustracaoEntrega() {
+        return this.dataHoraFrustracaoEntrega;
+    }
 
-	public String getEndereco() {
-		return this.endereco;
-	}
+    public void setDataHoraFrustracaoEntrega(Date dataHoraFrustracaoEntrega) {
+        this.dataHoraFrustracaoEntrega = dataHoraFrustracaoEntrega;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public String getEndereco() {
+        return this.endereco;
+    }
 
-	public byte getEntregaFrustrada() {
-		return this.entregaFrustrada;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	public void setEntregaFrustrada(byte entregaFrustrada) {
-		this.entregaFrustrada = entregaFrustrada;
-	}
+    public byte getEntregaFrustrada() {
+        return this.entregaFrustrada;
+    }
 
-	public byte getEntregue() {
-		return this.entregue;
-	}
+    public void setEntregaFrustrada(byte entregaFrustrada) {
+        this.entregaFrustrada = entregaFrustrada;
+    }
 
-	public void setEntregue(byte entregue) {
-		this.entregue = entregue;
-	}
+    public byte getEntregue() {
+        return this.entregue;
+    }
 
-	public String getJustificativaFrustracaoEntrega() {
-		return this.justificativaFrustracaoEntrega;
-	}
+    public void setEntregue(byte entregue) {
+        this.entregue = entregue;
+    }
 
-	public void setJustificativaFrustracaoEntrega(String justificativaFrustracaoEntrega) {
-		this.justificativaFrustracaoEntrega = justificativaFrustracaoEntrega;
-	}
+    public String getJustificativaFrustracaoEntrega() {
+        return this.justificativaFrustracaoEntrega;
+    }
 
-	public String getNomeCliente() {
-		return this.nomeCliente;
-	}
+    public void setJustificativaFrustracaoEntrega(String justificativaFrustracaoEntrega) {
+        this.justificativaFrustracaoEntrega = justificativaFrustracaoEntrega;
+    }
 
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
-	}
+    public String getNomeCliente() {
+        return this.nomeCliente;
+    }
 
-	public String getObservacao() {
-		return this.observacao;
-	}
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
+    public String getObservacao() {
+        return this.observacao;
+    }
 
-	public int getPedidoId() {
-		return this.pedidoId;
-	}
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 
-	public void setPedidoId(int pedidoId) {
-		this.pedidoId = pedidoId;
-	}
+    public int getPedidoId() {
+        return this.pedidoId;
+    }
 
-	public Funcionario getFuncionario_entrega() {
-		return this.funcionario_entrega;
-	}
+    public void setPedidoId(int pedidoId) {
+        this.pedidoId = pedidoId;
+    }
 
-	public void setFuncionario_entrega(Funcionario funcionario_entrega) {
-		this.funcionario_entrega = funcionario_entrega;
-	}
+    public Funcionario getFuncionarioEntrega() {
+        return this.funcionarioEntrega;
+    }
 
-	public Funcionario getFuncionario_cancelamento() {
-		return this.funcionario_cancelamento;
-	}
+    public void setFuncionarioEntrega(Funcionario funcionarioEntrega) {
+        this.funcionarioEntrega = funcionarioEntrega;
+    }
 
-	public void setFuncionario_cancelamento(Funcionario funcionario_cancelamento) {
-		this.funcionario_cancelamento = funcionario_cancelamento;
-	}
+    public Funcionario getFuncionarioCancelamento() {
+        return this.funcionarioCancelamento;
+    }
+
+    public void setFuncionarioCancelamento(Funcionario funcionarioCancelamento) {
+        this.funcionarioCancelamento = funcionarioCancelamento;
+    }
 
 }
