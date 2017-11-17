@@ -1,8 +1,16 @@
 Vue.use(VueMaterial)
 
+Vue.component('modal', {
+  template: '#modal-template'
+})
 
 var App = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    showModalConfirmar:false,
+    showModalProblema:false,
+    showModalCancelar:false,
+  }
 })
 
 var makeRadiosDeselectableByName = function(name){
