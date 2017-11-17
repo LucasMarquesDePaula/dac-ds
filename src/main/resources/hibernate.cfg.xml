@@ -9,7 +9,6 @@
     <property name="hibernate.connection.password">@dac</property>
     <property name="javax.persistence.validation.mode">NONE</property>
     <mapping class="br.ufpr.tads.dac.ds.model.Funcionario"/>
-    <mapping resource="./mapping/Funcionario.hbm.xml"/>
     <mapping class="br.ufpr.tads.dac.ds.model.Entrega"/>
   </session-factory>
 </hibernate-configuration>

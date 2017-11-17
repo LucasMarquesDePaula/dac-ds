@@ -45,12 +45,6 @@
                                     </md-layout>
                                     <md-layout :md-column="true" :md-flex="75">
                                         <md-layout :md-gutter="true">
-                                            <md-layout md-flex="30">
-                                                <md-input-container>
-                                                    <label>Código</label>
-                                                    <md-input :readonly="true" name="id" type="number" value="${model.id}"></md-input>
-                                                </md-input-container>
-                                            </md-layout>
                                             <md-layout>
                                                 <md-input-container class="${empty messages.nome ? '' : 'md-input-invalid'}">
                                                     <label>Nome</label>
@@ -94,11 +88,15 @@
                                                 </md-input-container>
                                             </md-layout>
                                         </md-layout>
+                                        <md-layout>
+                                                <md-input type="checkbox" name="gerente" style="cursor:pointer"></md-input>Gerente                                                    
+                                        </md-layout>
                                     </md-layout>
                                 </md-layout>
 
                                 <div class="hidden">
-                                    <input name="ativo" type="hidden" value="1"/>/
+                                    <input name="ativo" type="hidden" value="1" />
+                                    <input name="id" type="hidden" value="${model.id}" />
                                     <input name="foto" type="hidden" value="${model.foto}"/>
                                 </div>
 
