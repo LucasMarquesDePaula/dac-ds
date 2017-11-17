@@ -47,11 +47,11 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
     private String senha;
 
     //bi-directional many-to-one association to Entrega
-    @OneToMany(mappedBy = "funcionario_entrega")
+    @OneToMany(mappedBy = "funcionarioEntrega")
     private List<Entrega> entregas;
 
     //bi-directional many-to-one association to Entrega
-    @OneToMany(mappedBy = "funcionario_cancelamento")
+    @OneToMany(mappedBy = "funcionarioCancelamento")
     private List<Entrega> entregasCanceladas;
 
     public Funcionario() {
