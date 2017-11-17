@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -36,9 +35,6 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
     private Date dataNascimento;
 
     private String email;
-
-    @Lob
-    private byte[] foto;
 
     private byte gerente;
 
@@ -89,14 +85,6 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public byte[] getFoto() {
-        return this.foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 
     public byte getGerente() {
