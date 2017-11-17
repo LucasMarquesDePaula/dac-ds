@@ -1,162 +1,171 @@
 package br.ufpr.tads.dac.ds.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the funcionario database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Funcionario.findAll", query="SELECT f FROM Funcionario f")
+@NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f")
 public class Funcionario extends Model<Integer> implements Authenticable, Serializable {
-	
-       private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+    private static final long serialVersionUID = 1L;
 
-	private byte ativo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="data_nascimento")
-	private Date dataNascimento;
+    private byte ativo;
 
-	private String email;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_nascimento")
+    private Date dataNascimento;
 
-	@Lob
-	private byte[] foto;
+    private String email;
 
-	private byte gerente;
+    @Lob
+    private byte[] foto;
 
-	private String nome;
+    private byte gerente;
 
-	private String senha;
+    private String nome;
 
-	//bi-directional many-to-one association to Entrega
-	@OneToMany(mappedBy="funcionario_entrega")
-	private List<Entrega> entregas;
+    private String senha;
 
-	//bi-directional many-to-one association to Entrega
-	@OneToMany(mappedBy="funcionario_cancelamento")
-	private List<Entrega> entregasCanceladas;
+    //bi-directional many-to-one association to Entrega
+    @OneToMany(mappedBy = "funcionario_entrega")
+    private List<Entrega> entregas;
 
-	public Funcionario() {
-	}
+    //bi-directional many-to-one association to Entrega
+    @OneToMany(mappedBy = "funcionario_cancelamento")
+    private List<Entrega> entregasCanceladas;
 
-       @Override
-	public Integer getId() {
-		return this.id;
-	}
+    public Funcionario() {
+    }
 
-       @Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
 
-	public byte getAtivo() {
-		return this.ativo;
-	}
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setAtivo(byte ativo) {
-		this.ativo = ativo;
-	}
+    public byte getAtivo() {
+        return this.ativo;
+    }
 
-	public Date getDataNascimento() {
-		return this.dataNascimento;
-	}
+    public void setAtivo(byte ativo) {
+        this.ativo = ativo;
+    }
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+    public Date getDataNascimento() {
+        return this.dataNascimento;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public byte[] getFoto() {
-		return this.foto;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
-	}
+    public byte[] getFoto() {
+        return this.foto;
+    }
 
-	public byte getGerente() {
-		return this.gerente;
-	}
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
 
-	public void setGerente(byte gerente) {
-		this.gerente = gerente;
-	}
+    public byte getGerente() {
+        return this.gerente;
+    }
 
-	public String getNome() {
-		return this.nome;
-	}
+    public void setGerente(byte gerente) {
+        this.gerente = gerente;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return this.nome;
+    }
 
-	public String getSenha() {
-		return this.senha;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public String getSenha() {
+        return this.senha;
+    }
 
-	public List<Entrega> getEntregas() {
-		return this.entregas;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public void setEntregas(List<Entrega> entregas) {
-		this.entregas = entregas;
-	}
+    public List<Entrega> getEntregas() {
+        return this.entregas;
+    }
 
-	public Entrega addEntrega(Entrega entrega) {
-		getEntregas().add(entrega);
-		entrega.setFuncionario_entrega(this);
+    public void setEntregas(List<Entrega> entregas) {
+        this.entregas = entregas;
+    }
 
-		return entrega;
-	}
+    public Entrega addEntrega(Entrega entrega) {
+        getEntregas().add(entrega);
+        entrega.setFuncionarioEntrega(this);
 
-	public Entrega removeEntrega(Entrega entrega) {
-		getEntregas().remove(entrega);
-		entrega.setFuncionario_entrega(null);
+        return entrega;
+    }
 
-		return entrega;
-	}
+    public Entrega removeEntrega(Entrega entrega) {
+        getEntregas().remove(entrega);
+        entrega.setFuncionarioEntrega(null);
 
-	public List<Entrega> getEntregasCanceladas() {
-		return this.entregasCanceladas;
-	}
+        return entrega;
+    }
 
-	public void setEntregasCanceladas(List<Entrega> entregasCanceladas) {
-		this.entregasCanceladas = entregasCanceladas;
-	}
+    public List<Entrega> getEntregasCanceladas() {
+        return this.entregasCanceladas;
+    }
 
-	public Entrega addEntregasCancelada(Entrega entregasCancelada) {
-		getEntregasCanceladas().add(entregasCancelada);
-		entregasCancelada.setFuncionario_cancelamento(this);
+    public void setEntregasCanceladas(List<Entrega> entregasCanceladas) {
+        this.entregasCanceladas = entregasCanceladas;
+    }
 
-		return entregasCancelada;
-	}
+    public Entrega addEntregasCancelada(Entrega entregasCancelada) {
+        getEntregasCanceladas().add(entregasCancelada);
+        entregasCancelada.setFuncionarioCancelamento(this);
 
-	public Entrega removeEntregasCancelada(Entrega entregasCancelada) {
-		getEntregasCanceladas().remove(entregasCancelada);
-		entregasCancelada.setFuncionario_cancelamento(null);
+        return entregasCancelada;
+    }
 
-		return entregasCancelada;
-	}
+    public Entrega removeEntregasCancelada(Entrega entregasCancelada) {
+        getEntregasCanceladas().remove(entregasCancelada);
+        entregasCancelada.setFuncionarioCancelamento(null);
+
+        return entregasCancelada;
+    }
 
     @Override
     public String getUsername() {
