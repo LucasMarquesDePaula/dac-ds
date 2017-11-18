@@ -62,7 +62,7 @@ public class LoginController extends Controller {
                 if (admin.getPassword().equals(password)) {
                     request.getSession().setAttribute(Role.class.getSimpleName(), Role.ADMIN);
                     request.getSession().setAttribute(Authenticable.class.getSimpleName(), admin);
-                    response.sendRedirect(request.getContextPath()+"/funcionario/form");
+                    response.sendRedirect(request.getContextPath()+"/entrega/grid");
                     return;
                 }
             }
@@ -83,7 +83,7 @@ public class LoginController extends Controller {
                 if (funcionario.getPassword().equals(password)) {
                     request.getSession().setAttribute(Role.class.getSimpleName(), Role.FUNCIONARIO);
                     request.getSession().setAttribute(Authenticable.class.getSimpleName(), funcionario);
-                    response.sendRedirect(request.getContextPath()+"/funcionario/form");
+                    response.sendRedirect(request.getContextPath()+"/entrega/grid");
                     return;
                 }
             }
