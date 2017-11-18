@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -27,7 +28,7 @@ public class Entrega extends Model<Integer> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private byte cancelado;
+    private Byte cancelado;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora_cadastro")
@@ -48,9 +49,9 @@ public class Entrega extends Model<Integer> implements Serializable {
     private String endereco;
 
     @Column(name = "entrega_frustrada")
-    private byte entregaFrustrada;
+    private Byte entregaFrustrada;
 
-    private byte entregue;
+    private Byte entregue;
 
     @Column(name = "justificativa_frustracao_entrega")
     private String justificativaFrustracaoEntrega;
@@ -65,10 +66,12 @@ public class Entrega extends Model<Integer> implements Serializable {
 
     //bi-directional many-to-one association to Funcionario
     @ManyToOne
+    @JoinColumn(name = "funcionario_entrega_id")
     private Funcionario funcionarioEntrega;
 
     //bi-directional many-to-one association to Funcionario
     @ManyToOne
+    @JoinColumn(name = "funcionario_cancelamento_id")
     private Funcionario funcionarioCancelamento;
 
     public Entrega() {
@@ -84,11 +87,11 @@ public class Entrega extends Model<Integer> implements Serializable {
         this.id = id;
     }
 
-    public byte getCancelado() {
+    public Byte getCancelado() {
         return this.cancelado;
     }
 
-    public void setCancelado(byte cancelado) {
+    public void setCancelado(Byte cancelado) {
         this.cancelado = cancelado;
     }
 
@@ -132,19 +135,19 @@ public class Entrega extends Model<Integer> implements Serializable {
         this.endereco = endereco;
     }
 
-    public byte getEntregaFrustrada() {
+    public Byte getEntregaFrustrada() {
         return this.entregaFrustrada;
     }
 
-    public void setEntregaFrustrada(byte entregaFrustrada) {
+    public void setEntregaFrustrada(Byte entregaFrustrada) {
         this.entregaFrustrada = entregaFrustrada;
     }
 
-    public byte getEntregue() {
+    public Byte getEntregue() {
         return this.entregue;
     }
 
-    public void setEntregue(byte entregue) {
+    public void setEntregue(Byte entregue) {
         this.entregue = entregue;
     }
 
