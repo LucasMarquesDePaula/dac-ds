@@ -29,7 +29,7 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private byte ativo;
+    private Byte ativo;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "data_nascimento")
@@ -37,7 +37,7 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
 
     private String email;
 
-    private byte gerente;
+    private Byte gerente;
 
     private String nome;
 
@@ -64,11 +64,11 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
         this.id = id;
     }
 
-    public byte getAtivo() {
+    public Byte getAtivo() {
         return this.ativo;
     }
 
-    public void setAtivo(byte ativo) {
+    public void setAtivo(Byte ativo) {
         this.ativo = ativo;
     }
 
@@ -88,11 +88,11 @@ public class Funcionario extends Model<Integer> implements Authenticable, Serial
         this.email = email;
     }
 
-    public byte getGerente() {
+    public Byte getGerente() {
         return this.gerente;
     }
 
-    public void setGerente(byte gerente) {
+    public void setGerente(Byte gerente) {
         this.gerente = gerente;
     }
 
