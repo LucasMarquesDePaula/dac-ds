@@ -155,6 +155,7 @@ public abstract class CrudController<T extends Model> extends Controller {
             request.setAttribute("basePath", getBasePath());
             switch (action) {
                 case "create":
+                    model.setId(null);
                     beforeCreate(request, response, model);
                     facede.save(model);
                     request.setAttribute("message", "Cadastrado com sucesso!");

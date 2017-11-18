@@ -56,8 +56,8 @@ public class LoginController extends Controller {
             Admin admin = Admin.getInstance();
             if (admin.getUsername().equals(username)) {
                 if (admin.getPassword().equals(password)) {
-                    request.getSession().setAttribute(Role.class.getName(), Role.ADMIN);
-                    request.getSession().setAttribute(Authenticable.class.getName(), admin);
+                    request.getSession().setAttribute(Role.class.getSimpleName(), Role.ADMIN);
+                    request.getSession().setAttribute(Authenticable.class.getSimpleName(), admin);
                     response.sendRedirect(request.getContextPath());
                     return;
                 }
