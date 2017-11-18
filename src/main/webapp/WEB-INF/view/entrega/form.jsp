@@ -44,14 +44,32 @@
                                             </md-input-container>
                                         </md-layout>
                                     </c:if>
+                                    <md-layout md-flex="15">
+                                        <md-input-container>
+                                            <label>Nº Pedido</label>
+                                            <md-input name="pedido_id" value="${model.pedidoId}"></md-input>
+                                        </md-input-container>
+                                    </md-layout>
                                     <md-layout>
-                                        <md-input-container class="${empty messages.nome ? '' : 'md-input-invalid'}">
-                                            <label>ID Pedido</label>
-                                            <md-input name="pedido_id" :required="true" value="${model.pedidoId}"></md-input>
-                                            <span class="md-error"><c:out value="${messages.pedidoId}"/></span>
+                                        <md-input-container>
+                                            <label>Nome Cliente</label>
+                                            <md-input name="nome_cliente" value="${model.nomeCliente}"></md-input>
                                         </md-input-container>
                                     </md-layout>
                                 </md-layout>
+
+                                <md-input-container class="${empty messages.endereco ? '' : 'md-input-invalid'}">
+                                    <label>Endereço</label>
+                                    <md-input name="endereco" :required="true" value="${model.endereco}"></md-input>
+                                    <span class="md-error"><c:out value="${messages.endereco}"/></span>
+                                </md-input-container>
+
+                                <md-input-container class="${empty messages.observacao ? '' : 'md-input-invalid'}">
+                                    <label>Observação</label>
+                                    <md-input name="observacao" :required="false" value="${model.observacao}"></md-input>
+                                    <span class="md-error"><c:out value="${messages.observacao}"/></span>
+                                </md-input-container>
+
                                 <md-card-actions>
                                     <md-button type="submit" class="md-raised md-primary bt-align">Salvar</md-button>	
                                 </md-card-actions>

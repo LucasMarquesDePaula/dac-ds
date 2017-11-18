@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -65,10 +66,12 @@ public class Entrega extends Model<Integer> implements Serializable {
 
     //bi-directional many-to-one association to Funcionario
     @ManyToOne
+    @JoinColumn(name = "funcionario_entrega_id")
     private Funcionario funcionarioEntrega;
 
     //bi-directional many-to-one association to Funcionario
     @ManyToOne
+    @JoinColumn(name = "funcionario_cancelamento_id")
     private Funcionario funcionarioCancelamento;
 
     public Entrega() {
