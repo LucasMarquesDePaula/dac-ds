@@ -1,16 +1,20 @@
 package br.ufpr.tads.dac.ds.controller;
 
+import br.ufpr.tads.dac.ds.facede.FuncionarioFacede;
 import br.ufpr.tads.dac.ds.filter.Role;
 import br.ufpr.tads.dac.ds.model.Admin;
 import br.ufpr.tads.dac.ds.model.Authenticable;
+import br.ufpr.tads.dac.ds.model.Funcionario;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.criterion.Example;
 
 /**
  *
@@ -58,12 +62,33 @@ public class LoginController extends Controller {
                 if (admin.getPassword().equals(password)) {
                     request.getSession().setAttribute(Role.class.getSimpleName(), Role.ADMIN);
                     request.getSession().setAttribute(Authenticable.class.getSimpleName(), admin);
-                    response.sendRedirect(request.getContextPath());
+                    response.sendRedirect(request.getContextPath()+"/funcionario/form");
+                    return;
+                }
+            }
+            
+         // Funcionario
+            Funcionario funcionario = new Funcionario();
+            funcionario.setUsername(username);
+            
+            FuncionarioFacede funcionarioFacede = new FuncionarioFacede();
+            List<Funcionario> funcionarioList = funcionarioFacede.list(Example.create(funcionario), null, null, null).getList();
+
+            // Encontrou o cliente no banco de dados ?
+            Funcionario funcionarioFound = funcionarioList.size() == 1 ? funcionarioList.get(0) : null;
+            
+            if (funcionarioList.size() == 1) {
+                funcionario.setId(funcionarioFound.getId());
+                funcionario.setPassword(password);
+                if (funcionario.getPassword().equals(password)) {
+                    request.getSession().setAttribute(Role.class.getSimpleName(), Role.FUNCIONARIO);
+                    request.getSession().setAttribute(Authenticable.class.getSimpleName(), funcionario);
+                    response.sendRedirect(request.getContextPath()+"/funcionario/form");
                     return;
                 }
             }
             messages.put("login", "Dados inválidos. Tente novamente");
-        }
+        }        
 
         request.setAttribute("messages", messages);
         request.getRequestDispatcher(viewPath(String.format("%s/form.jsp", getBasePath()))).forward(request, response);
