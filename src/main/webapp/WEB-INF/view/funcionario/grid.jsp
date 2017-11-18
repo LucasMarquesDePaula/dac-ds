@@ -64,7 +64,6 @@
                         <md-table @sort="onSort" md-sort="${param.sortField}" md-sort-type="${param.sortDirection}">
                             <md-table-header>
                                 <md-table-row>
-                                    <md-table-head></md-table-head>
                                     <md-table-head md-sort-by="id">Cód.</md-table-head>
                                     <md-table-head md-sort-by="nome">Nome</md-table-head>
                                     <md-table-head md-sort-by="dataNascimento">Data Nascimento</md-table-head>
@@ -74,11 +73,6 @@
                             <md-table-body>
                                 <c:forEach var="item" items="${queryResult.list}">
                                     <md-table-row>
-                                        <md-table-cell>
-                                            <md-avatar>
-                                                <img src="${item.foto}" alt="Foto">
-                                            </md-avatar>
-                                        </md-table-cell>
                                         <md-table-cell><c:out value="${item.id}"/></md-table-cell>
                                         <md-table-cell><c:out value="${item.nome}"/></md-table-cell>
                                         <md-table-cell><fmt:formatDate value="${item.dataNascimento}"/></md-table-cell>
