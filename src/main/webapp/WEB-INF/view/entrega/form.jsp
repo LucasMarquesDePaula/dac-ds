@@ -47,13 +47,13 @@
                                     <md-layout md-flex="15">
                                         <md-input-container>
                                             <label>Nº Pedido</label>
-                                            <md-input name="pedido_id" value="${model.pedidoId}"></md-input>
+                                            <md-input name="pedidoId" value="${model.pedidoId}"></md-input>
                                         </md-input-container>
                                     </md-layout>
                                     <md-layout>
                                         <md-input-container>
                                             <label>Nome Cliente</label>
-                                            <md-input name="nome_cliente" value="${model.nomeCliente}"></md-input>
+                                            <md-input name="nomeCliente" value="${model.nomeCliente}"></md-input>
                                         </md-input-container>
                                     </md-layout>
                                 </md-layout>

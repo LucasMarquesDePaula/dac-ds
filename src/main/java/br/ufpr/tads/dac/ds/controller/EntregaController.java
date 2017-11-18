@@ -10,6 +10,7 @@ import br.ufpr.tads.dac.ds.facede.EntregaFacede;
 import br.ufpr.tads.dac.ds.model.Entrega;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,14 @@ public class EntregaController extends CrudController<Entrega> {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doPost(request, response);
+    }
+    
+    @Override
+    protected void beforeCreate(HttpServletRequest request, HttpServletResponse response, Entrega model) {
+        model.setDataHoraCadastro(new Date());
+        model.setEntregue((byte) 0x0);
+        model.setEntregaFrustrada((byte) 0x0);
+        model.setCancelado((byte) 0x0);
     }
 
     @Override
