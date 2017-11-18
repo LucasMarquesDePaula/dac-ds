@@ -69,7 +69,13 @@
                                     <md-input name="observacao" :required="false" value="${model.observacao}"></md-input>
                                     <span class="md-error"><c:out value="${messages.observacao}"/></span>
                                 </md-input-container>
-
+                                
+                                <div class="hidden">
+                                    <c:if test="${empty model.id}">
+                                        <input name ="id" type="hidden" value=""/>
+                                    </c:if>
+                                </div>
+                                
                                 <md-card-actions>
                                     <md-button type="submit" class="md-raised md-primary bt-align">Salvar</md-button>	
                                 </md-card-actions>
