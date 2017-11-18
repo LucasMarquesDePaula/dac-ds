@@ -37,7 +37,7 @@
                         <span>Editar</span>
                         <md-icon>edit</md-icon> 
                     </md-list-item>
-                    <md-list-item class="md-inset" href="/ds/entrega/grid" >
+                    <md-list-item class="md-inset" href="/ds/entrega/form" >
                         <span>Cadastrar Manualmente</span>
                         <md-icon>add</md-icon> 
                     </md-list-item>
