@@ -24,91 +24,95 @@
             <jsp:param name="title" value="${title}" />
         </jsp:include>           
         <div id="app">
-            <!-- FILTRO -->
-            <div class="main-content">
-                <md-card>
-                    <md-card-header>
-                        <div class="md-title">Editar Entregas</div>
-                    </md-card-header>
-                    <form novalidate @submit.stop.prevent="submit">
-                        <md-input-container>
-                            <label for="filtro">Selecionar entregas por...</label>
-                            <md-select name="filtro" id="filtro" v-model="filtro">
-                                <md-option value="dtatual">Data atual</md-option>
-                                <md-option value="perdt">Período de datas</md-option>
-                                <md-option value="pednresolv">A entregar</md-option>
-                            </md-select>
-                        </md-input-container>
-
-                        <md-layout md-gutter>
-                            <md-layout>
-                                <md-input-container>
-                                    <label>Data Inicial</label>
-                                    <md-input type="date" name="dt-inicial"></md-input>
-                                </md-input-container>
-                            </md-layout>
-                            <md-layout>
-                                <md-input-container>
-                                    <label>Data Final</label>
-                                    <md-input type="date" name="dt-final"></md-input>
-                                </md-input-container>
-                            </md-layout>
-                            <md-layout>
-                                <div id="formRadios">
-                                    <label><input type="radio" name="filtro" id="radioopt1">Minhas entregas</label></br>
-                                    <label><input type="radio" name="filtro" id="radioopt2">Entregas abertas</label></br>
-                                    <label><input type="radio" name="filtro" id="radioopt3">Entregas concluídas</label></br>
-                                </div>
-                            </md-layout>
-                        </md-layout>
-                        <md-button class="md-raised md-primary bt-align" id="filtrar">Filtrar</md-button>
-                    </form>
-                </md-card>
-            </div>
-
-            <!-- LISTA DE PEDIDOS -->
-            <div class="main-content-table">
-                <md-card>
-                    <md-table v-once>
-                        <md-table-header>
-                            <md-table-row>
-                                <md-table-head></md-table-head>
-                                <md-table-head>Data Pedido</md-table-head>
-                                <md-table-head>ID Pedido</md-table-head>
-                                <md-table-head>Cliente</md-table-head>
-                                <md-table-head>Endereço</md-table-head>
-                                <md-table-head>Entregador</md-table-head>
-                                <md-table-head>Entregue</md-table-head>
-                                <md-table-head>Data Entrega</md-table-head>
-                                <md-table-head>Cancelado</md-table-head>
-                                <md-table-head>Data Cancelamento</md-table-head>
-                                <md-table-head>Entrega Frustrada</md-table-head>
-                                <md-table-head>Data Frustração</md-table-head>
-                                <md-table-head>Justificativa</md-table-head>
-                                <md-table-head>Observação</md-table-head>
-                            </md-table-row>
-                        </md-table-header>
-
-                        <md-table-body>
-                            <md-table-row v-for="(row, index) in 5" :key="index" md-selection>
-                                <md-table-cell>01/01/2017</md-table-cell>
-                                <md-table-cell>00000</md-table-cell>
-                                <md-table-cell>John Doe</md-table-cell>
-                                <md-table-cell>Rua XV, 15</md-table-cell>
-                                <md-table-cell>Sr. Entregador</md-table-cell>
-                                <md-table-cell>sim</md-table-cell>
-                                <md-table-cell>17/09/2017</md-table-cell>
-                                <md-table-cell></md-table-cell>
-                                <md-table-cell></md-table-cell>
-                                <md-table-cell></md-table-cell>
-                                <md-table-cell></md-table-cell>
-                                <md-table-cell></md-table-cell>
-                                <md-table-cell>obs.</md-table-cell>
-                            </md-table-row>
-                        </md-table-body>
-                    </md-table>
-                </md-card>
-            </div>
-            <st:js res="view/${basePath}/grid.js"/>
+            <md-layout md-align="center">
+                <md-layout md-flex="90">
+                    <!-- FILTROS -->
+                    <md-table-card>
+                        <form>
+                            <div class="field-group">
+                                <md-layout :md-gutter="true">
+                                    <md-layout md-flex="40">
+                                        <md-input-container>
+                                            <label for="select">Filtrar...</label>
+                                            <md-select v-model="tipoFiltro">
+                                                <md-option value="ep">Entregas Pendentes</md-option>
+                                                <md-option value="ec">Entregas Concluídas</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </md-layout>   
+                                    <md-layout md-flex="10">
+                                        <md-toolbar>
+                                            <md-button type="submit" class="md-icon-button">
+                                                <md-icon>search</md-icon>
+                                            </md-button>
+                                        </md-toolbar>
+                                    </md-layout>
+                                </md-layout>
+                            </div>
+                        </form>
+                        
+                        <!-- LISTA DE ENTREGAS -->
+                        <md-table @sort="onSort" md-sort="${param.sortField}" md-sort-type="${param.sortDirection}">
+                            <md-table-header>
+                                <md-table-row>
+                                    <md-table-head md-sort-by="id">Cód.</md-table-head>
+                                    <md-table-head md-sort-by="nomeCliente">Nome Cliente</md-table-head>
+                                    <md-table-head md-sort-by="endereco">Endereço</md-table-head>
+                                    <md-table-head md-sort-by="observacao">Observação</md-table-head>
+                                    <md-table-head md-sort-by="dataHoraCadastro">Data/Hora Cadastro</md-table-head>
+                                    <md-table-head md-sort-by="pedidoId">ID Pedido</md-table-head>
+                                    <md-table-head md-sort-by="entregue">Entregue?</md-table-head>
+                                    <md-table-head md-sort-by="dataHoraEntrega">Data/Hora Entrega</md-table-head>
+                                    <md-table-head md-sort-by="funcionarioEntregaId">ID Func. Entrega</md-table-head>
+                                    <md-table-head md-sort-by="entregaFrustrada">Entrega Frustrada?</md-table-head>
+                                    <md-table-head md-sort-by="dataHoraFrustracaoEntrega">Data/Hora Frustração</md-table-head>
+                                    <md-table-head md-sort-by="justificativaFrustracaoEntrega">Justificativa</md-table-head>
+                                    <md-table-head md-sort-by="cancelado">Cancelado?</md-table-head>
+                                    <md-table-head md-sort-by="dataHoraCancelamento">Data/Hora Cancelamento</md-table-head>
+                                    <md-table-head md-sort-by="funcionarioCancelamentoId">ID Func. Cancelamento</md-table-head>
+                                </md-table-row>
+                            </md-table-header>
+                            <md-table-body>
+                                <c:forEach var="item" items="${queryResult.list}">
+                                    <md-table-row>
+                                        <md-table-cell><c:out value="${item.id}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.nomeCliente}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.endereco}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.observacao}"/></md-table-cell>
+                                        <md-table-cell><fmt:formatDate type="both" value="${item.dataHoraCadastro}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.pedidoId}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${(item.entregue==1) ? 'Sim' : 'Não'}"/></md-table-cell>
+                                        <md-table-cell><fmt:formatDate type="both" value="${item.dataHoraEntrega}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.funcionarioEntrega}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${(item.entregaFrustrada==1) ? 'Sim' : 'Não'}"/></md-table-cell>
+                                        <md-table-cell><fmt:formatDate type="both" value="${item.dataHoraFrustracaoEntrega}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.justificativaFrustracaoEntrega}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${(item.cancelado==1) ? 'Sim' : 'Não'}"/></md-table-cell>
+                                        <md-table-cell><fmt:formatDate type="both" value="${item.dataHoraCancelamento}"/></md-table-cell>
+                                        <md-table-cell><c:out value="${item.funcionarioCancelamento}"/></md-table-cell>
+                                        <md-table-cell>
+                                            <md-button class="md-icon-button" href="${contextPath}/${basePath}/form/${item.id}" target="_blank">
+                                                <md-icon>edit</md-icon>
+                                            </md-button>
+                                        </md-table-cell>
+                                    </md-table-row>
+                                </c:forEach>
+                            </md-table-body>
+                        </md-table>
+                        <div class="md-table-pagination">
+                            <span class="md-table-pagination-label">Nº de Linhas: </span>
+                            <span>${offset} - ${offset + limit > queryResult.count ? queryResult.count : offset + limit} de ${queryResult.count}</span>
+                            <md-button class="md-icon-button" @click="prevPage(${limit}, ${offset}, ${queryResult.count})"  :disabled="${offset <= 0}">
+                                <md-icon>keyboard_arrow_left</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" @click="nextPage(${limit}, ${offset}, ${queryResult.count})" :disabled="${offset + limit > queryResult.count}">
+                                <md-icon>keyboard_arrow_right</md-icon>
+                            </md-button>
+                        </div>
+                    </md-table-card>
+                </md-layout>
+            </md-layout>
+        </div>      
+        <st:js res="view/${basePath}/grid.js"/>
     </body>
 </html>

@@ -31,6 +31,11 @@ public class FuncionarioController extends CrudController<Funcionario> {
     }
 
     @Override
+    protected void beforeCreate(HttpServletRequest request, HttpServletResponse response, Funcionario model) {
+        
+    }
+
+    @Override
     protected Logger getLogger() {
         return logger;
     }

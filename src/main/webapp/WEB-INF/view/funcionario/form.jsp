@@ -82,7 +82,7 @@
                                     </md-layout>
                                 </md-layout>
                                 <md-layout>
-                                        <md-input type="checkbox" name="gerente" style="cursor:pointer"></md-input>Gerente                                                    
+                                        <md-checkbox name="gerente" class="md-primary">Gerente</md-checkbox>                                                   
                                 </md-layout>
 
                                 <div class="hidden">
