@@ -39,13 +39,13 @@
                                 <md-layout :md-gutter="true">
                                     <c:if test="${!empty model.id}">
                                         <md-layout md-flex="10">
-                                        <md-input-container>
-                                            <label>Código</label>
-                                            <md-input :readonly="true" name="id" type="number" value="${model.id}"></md-input>
-                                        </md-input-container>
-                                    </md-layout>
+                                            <md-input-container>
+                                                <label>Código</label>
+                                                <md-input :readonly="true" name="id" type="number" value="${model.id}"></md-input>
+                                            </md-input-container>
+                                        </md-layout>
                                     </c:if>
-                                    
+
                                     <md-layout>
                                         <md-input-container class="${empty messages.nome ? '' : 'md-input-invalid'}">
                                             <label>Nome</label>
@@ -80,10 +80,17 @@
                                             <span class="md-error"><c:out value="${messages.senha}"/></span>
                                         </md-input-container>
                                     </md-layout>
+                                    <md-layout>
+                                        <md-input-container>
+                                            <label for="select">Perfil</label>
+                                            <md-select name="gerente">
+                                                <md-option value="0">Entregador</md-option>
+                                                <md-option value="1">Gerente</md-option>
+                                            </md-select>
+                                        </md-input-container>                                                   
+                                    </md-layout>
                                 </md-layout>
-                                <md-layout>
-                                        <md-checkbox name="gerente" class="md-primary">Gerente</md-checkbox>                                                   
-                                </md-layout>
+
 
                                 <div class="hidden">
                                     <input name="ativo" type="hidden" value="1"/>
