@@ -113,6 +113,6 @@
                 </md-layout>
             </md-layout>
         </div>      
-        <st:js res="view/${basePath}/grid.js"/>
+        <st:js res="view/entrega/grid.js"/>
     </body>
 </html>

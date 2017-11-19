@@ -62,7 +62,7 @@ public class Entrega extends Model<Integer> implements Serializable {
     private String observacao;
 
     @Column(name = "pedido_id")
-    private int pedidoId;
+    private Integer pedidoId;
 
     //bi-directional many-to-one association to Funcionario
     @ManyToOne
@@ -175,11 +175,11 @@ public class Entrega extends Model<Integer> implements Serializable {
         this.observacao = observacao;
     }
 
-    public int getPedidoId() {
+    public Integer getPedidoId() {
         return this.pedidoId;
     }
 
-    public void setPedidoId(int pedidoId) {
+    public void setPedidoId(Integer pedidoId) {
         this.pedidoId = pedidoId;
     }
 

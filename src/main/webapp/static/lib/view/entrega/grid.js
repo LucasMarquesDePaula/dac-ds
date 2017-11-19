@@ -1,12 +1,6 @@
 (() => {
     const app = new Vue({
         el: "#app",
-        data() {
-            return {              
-                tipoFiltro: "pda"
-            }
-        },
-
         methods: {
             prevPage(limit, offset, count) {
                 setTimeout(() => {
