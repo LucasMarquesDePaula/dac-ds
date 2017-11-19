@@ -69,13 +69,51 @@
                                     <md-input name="observacao" :required="false" value="${model.observacao}"></md-input>
                                     <span class="md-error"><c:out value="${messages.observacao}"/></span>
                                 </md-input-container>
+
+                                <md-layout :md-gutter="true">
+                                    <md-layout>
+                                        <md-input-container>
+                                            <label for="select">Entregue?</label>
+                                            <md-select name="entregue">
+                                                <md-option value="0">Não</md-option>
+                                                <md-option value="1">Sim</md-option>
+                                            </md-select>
+                                        </md-input-container>                                                   
+                                    </md-layout>
+                                    <md-layout>
+                                        <md-input-container>
+                                            <label for="select">Entrega Frustrada?</label>
+                                            <md-select name="entregaFrustrada">
+                                                <md-option value="0">Não</md-option>
+                                                <md-option value="1">Sim</md-option>
+                                            </md-select>
+                                        </md-input-container>                                                   
+                                    </md-layout>
+                                    <md-layout>
+                                        <md-input-container>
+                                            <label for="select">Cancelado?</label>
+                                            <md-select name="cancelado">
+                                                <md-option value="0">Não</md-option>
+                                                <md-option value="1">Sim</md-option>
+                                            </md-select>
+                                        </md-input-container>                                                   
+                                    </md-layout>
+                                </md-layout>
                                 
+                                <md-layout>
+                                    <md-input-container class="${empty messages.justificativaFrustracaoEntrega ? '' : 'md-input-invalid'}">
+                                    <label>Justificativa da Frustração da Entrega</label>
+                                    <md-input name="justificativaFrustracaoEntrega" :required="false" value="${model.justificativaFrustracaoEntrega}"></md-input>
+                                    <span class="md-error"><c:out value="${messages.justificativaFrustracaoEntrega}"/></span>
+                                    </md-input-container>
+                                </md-layout>
+
                                 <div class="hidden">
                                     <c:if test="${empty model.id}">
                                         <input name ="id" type="hidden" value=""/>
                                     </c:if>
                                 </div>
-                                
+
                                 <md-card-actions>
                                     <md-button type="submit" class="md-raised md-primary bt-align">Salvar</md-button>	
                                 </md-card-actions>
