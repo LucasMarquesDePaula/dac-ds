@@ -59,16 +59,16 @@ public class EntregaFacede extends CrudFacede<Entrega> {
 
         Entrega entrega = this.find(id);
 
-        if (entrega.getEntregaFrustrada() == 0x1) {
-            throw new IllegalOperationException("A entrega já está marcada como frustrada.");
-        }
+//        if (entrega.getEntregaFrustrada() == 0x1) {
+//            throw new IllegalOperationException("A entrega já está marcada como frustrada.");
+//        }
 
         if (entrega.getEntregue() == 0x1) {
-            throw new IllegalOperationException("A entrega não pode ser frustrada.");
+            throw new IllegalOperationException("A entrega não pode ser frustrada pois ja foi entregue.");
         }
         
         if (entrega.getCancelado() == 0x1) {
-            throw new IllegalOperationException("A entrega não pode ser frustrada.");
+            throw new IllegalOperationException("A entrega não pode ser frustrada pois foi cancelada.");
         }
 
         entrega.setEntregaFrustrada((byte) 0x1);

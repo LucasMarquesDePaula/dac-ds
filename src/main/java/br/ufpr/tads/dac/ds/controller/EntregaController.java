@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufpr.tads.dac.ds.controller;
 
 import br.ufpr.tads.dac.ds.facede.CrudFacede;
@@ -10,14 +5,17 @@ import br.ufpr.tads.dac.ds.facede.EntregaFacede;
 import br.ufpr.tads.dac.ds.model.Authenticable;
 import br.ufpr.tads.dac.ds.model.Entrega;
 import br.ufpr.tads.dac.ds.model.Funcionario;
+import br.ufpr.tads.dac.ds.ws.Message;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,21 +37,26 @@ public class EntregaController extends CrudController<Entrega> {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doPost(request, response);
     }
-    
+
     @Override
     protected void processNotCrudRequest(HttpServletRequest request, HttpServletResponse response, NotCrudActionException actionException) {
         try {
             String action = actionException.getAction();
             String[] pathParts = actionException.getPathParts();
             Integer id = Integer.parseInt(pathParts[2]);
-            
+
             Funcionario funcionario = null;
             EntregaFacede facede = new EntregaFacede();
+            Entrega model = null;
+            
+            Message message = null;
+            Client client = null;
 
             try {
                 funcionario = (Funcionario) request.getSession().getAttribute(Authenticable.class.getSimpleName());
-            } catch (Exception ignored) { }
-            
+            } catch (Exception ignored) {
+            }
+
             switch (action) {
                 case "confirm-delivery":
                     request.setAttribute("model", facede.confirmarEntrega(id, funcionario, new Date()));
@@ -61,8 +64,18 @@ public class EntregaController extends CrudController<Entrega> {
                     break;
                 case "confirm-frustration":
                     String justificativa = request.getParameter("justificativaFrustracaoEntrega");
-                    request.setAttribute("model", facede.confirmarFrustracao(id, justificativa, new Date()));
-                    request.setAttribute("message", "Entrega frustrada! Digite uma justificativa.");
+                    model = facede.confirmarFrustracao(id, justificativa, new Date());
+                    request.setAttribute("model", model);
+
+                    client = ClientBuilder.newClient();
+
+                    message = new Message("justificativa", justificativa);
+
+                    client.target(String.format("http://localhost:8080/lol/webresources/ws/delivery-frustrated/%d", model.getPedidoId()))
+                            .request(MediaType.APPLICATION_JSON)
+                            .put(Entity.entity(message, MediaType.APPLICATION_JSON), Message.class);
+
+                    request.setAttribute("message", "Entrega frustrada gravada com sucesso!");
                     break;
                 case "cancel-delivery":
                     request.setAttribute("model", facede.cancelarEntrega(id, funcionario, new Date()));
