@@ -26,6 +26,7 @@ public class WebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Message get(Message message) {
+        // Apenas teste
         return new Message(
                 "arg1", "value1",
                 "arg2", "value2"

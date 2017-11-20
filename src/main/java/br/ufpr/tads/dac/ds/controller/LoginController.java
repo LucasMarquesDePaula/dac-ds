@@ -82,7 +82,7 @@ public class LoginController extends Controller {
                 funcionario.setPassword(password);
                 if (funcionario.getPassword().equals(funcionarioFound.getPassword())) {
                     request.getSession().setAttribute(Role.class.getSimpleName(), Role.FUNCIONARIO);
-                    request.getSession().setAttribute(Authenticable.class.getSimpleName(), funcionario);
+                    request.getSession().setAttribute(Authenticable.class.getSimpleName(), funcionarioFound);
                     response.sendRedirect(request.getContextPath()+"/entrega/grid");
                     return;
                 }
