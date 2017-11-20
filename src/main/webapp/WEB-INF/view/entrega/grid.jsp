@@ -34,9 +34,10 @@
                                     <md-layout md-flex="40">
                                         <md-input-container>
                                             <label for="select">Filtrar...</label>
-                                            <md-select v-model="tipoFiltro">
-                                                <md-option value="ep">Entregas Pendentes</md-option>
-                                                <md-option value="ec">Entregas Concluídas</md-option>
+                                            <md-select name="entregue" value="${param.entregue}">
+                                                <md-option value="0">Entregas Pendentes</md-option>
+                                                <md-option value="1">Entregas Concluídas</md-option>
+                                                <md-option value="">Todas</md-option>
                                             </md-select>
                                         </md-input-container>
                                     </md-layout>   
