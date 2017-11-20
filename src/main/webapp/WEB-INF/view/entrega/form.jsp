@@ -70,13 +70,6 @@
                                     <span class="md-error"><c:out value="${messages.observacao}"/></span>
                                 </md-input-container>
 
-                                <c:if test="${model.entregaFrustrada == 1}">                                 
-                                    <md-input-container>
-                                        <label>Justificativa da Frustração</label>
-                                        <md-input name="justificativaFrustracaoEntrega" :required="false" value="${model.justificativaFrustracaoEntrega}"></md-input>
-                                    </md-input-container>
-                                </c:if>
-
                                 <div class="hidden">
                                     <c:if test="${empty model.id}">
                                         <input name ="id" type="hidden" value=""/>

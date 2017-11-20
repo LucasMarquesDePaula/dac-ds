@@ -47,7 +47,7 @@ public class EntregaFacede extends CrudFacede<Entrega> {
         return entrega;
     }
     
-    public Entrega confirmarFrustracao(Integer id, Date dataHora) throws IllegalOperationException, NotFoundException, ValidationException {
+    public Entrega confirmarFrustracao(Integer id, String justificativa, Date dataHora) throws IllegalOperationException, NotFoundException, ValidationException {
 
         if (id == null) {
             throw new IllegalArgumentException("A entrega não foi informada.");
@@ -73,6 +73,7 @@ public class EntregaFacede extends CrudFacede<Entrega> {
 
         entrega.setEntregaFrustrada((byte) 0x1);
         entrega.setDataHoraFrustracaoEntrega(dataHora);
+        entrega.setJustificativaFrustracaoEntrega(justificativa);
 
         this.save(entrega);
 

@@ -6,17 +6,21 @@
 <c:if test="${!empty model.id && model.cancelado == 0}">
     <md-card-actions>
         <c:if test="${model.entregaFrustrada == 0 && model.entregue == 0}">
-            <form method="POST" action='${contextPath}/${basePath}/confirm-delivery/${model.id}'>
+            <form method="POST" action='${contextPath}/${basePath}/confirm-frustration/${model.id}'>                               
+                <md-input-container>
+                    <label>Justificativa da Frustração</label>
+                    <md-input name="justificativaFrustracaoEntrega" :required="true" value="${model.justificativaFrustracaoEntrega}"></md-input>
+                </md-input-container>
                 <md-button type="submit" class="md-raised md-primary">
-                    Confirmar Entrega
+                    Entrega Frustrada
                 </md-button>
             </form>
         </c:if>
-
+        
         <c:if test="${model.entregaFrustrada == 0 && model.entregue == 0}">
-            <form method="POST" action='${contextPath}/${basePath}/confirm-frustration/${model.id}'>
+            <form method="POST" action='${contextPath}/${basePath}/confirm-delivery/${model.id}'>
                 <md-button type="submit" class="md-raised md-primary">
-                    Entrega Frustrada
+                    Confirmar Entrega
                 </md-button>
             </form>
         </c:if>
