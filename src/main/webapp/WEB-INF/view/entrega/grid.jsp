@@ -63,13 +63,13 @@
                                     <md-table-head md-sort-by="pedidoId">ID Pedido</md-table-head>
                                     <md-table-head md-sort-by="entregue">Entregue?</md-table-head>
                                     <md-table-head md-sort-by="dataHoraEntrega">Data/Hora Entrega</md-table-head>
-                                    <md-table-head md-sort-by="funcionarioEntregaId">ID Func. Entrega</md-table-head>
+                                    <md-table-head md-sort-by="funcionarioEntrega">ID Func. Entrega</md-table-head>
                                     <md-table-head md-sort-by="entregaFrustrada">Entrega Frustrada?</md-table-head>
                                     <md-table-head md-sort-by="dataHoraFrustracaoEntrega">Data/Hora Frustração</md-table-head>
                                     <md-table-head md-sort-by="justificativaFrustracaoEntrega">Justificativa</md-table-head>
                                     <md-table-head md-sort-by="cancelado">Cancelado?</md-table-head>
                                     <md-table-head md-sort-by="dataHoraCancelamento">Data/Hora Cancelamento</md-table-head>
-                                    <md-table-head md-sort-by="funcionarioCancelamentoId">ID Func. Cancelamento</md-table-head>
+                                    <md-table-head md-sort-by="funcionarioCancelamento">ID Func. Cancelamento</md-table-head>
                                 </md-table-row>
                             </md-table-header>
                             <md-table-body>
@@ -113,6 +113,6 @@
                 </md-layout>
             </md-layout>
         </div>      
-        <st:js res="view/${basePath}/grid.js"/>
+        <st:js res="view/entrega/grid.js"/>
     </body>
 </html>

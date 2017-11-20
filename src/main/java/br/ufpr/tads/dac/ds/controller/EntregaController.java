@@ -37,13 +37,57 @@ public class EntregaController extends CrudController<Entrega> {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doPost(request, response);
     }
-    
+
     @Override
     protected void beforeCreate(HttpServletRequest request, HttpServletResponse response, Entrega model) {
         model.setDataHoraCadastro(new Date());
-        model.setEntregue((byte) 0x0);
-        model.setEntregaFrustrada((byte) 0x0);
-        model.setCancelado((byte) 0x0);
+        String entregue = request.getParameter("entregue");
+        if (entregue.equals("1")) {
+            model.setEntregue((byte) 0x1);
+            model.setDataHoraEntrega(new Date());
+        } else {
+            model.setEntregue((byte) 0x0);
+        }
+        String entregaFrustrada = request.getParameter("entregaFrustrada");
+        if(entregaFrustrada.equals("1")) {
+            model.setEntregaFrustrada((byte) 0x1);
+            model.setDataHoraFrustracaoEntrega(new Date());
+        } else {
+            model.setEntregaFrustrada((byte) 0x0);
+        }
+        String cancelado = request.getParameter("cancelado");
+        if(cancelado.equals("1")) {
+            model.setCancelado((byte) 0x1);
+            model.setDataHoraCancelamento(new Date());
+        } else {
+            model.setCancelado((byte) 0x0);
+        }
+    }
+    
+    @Override
+    protected void beforeUpdate(HttpServletRequest request, HttpServletResponse response, Entrega model) {
+        model.setDataHoraCadastro(new Date());
+        String entregue = request.getParameter("entregue");
+        if (entregue.equals("1")) {
+            model.setEntregue((byte) 0x1);
+            model.setDataHoraEntrega(new Date());
+        } else {
+            model.setEntregue((byte) 0x0);
+        }
+        String entregaFrustrada = request.getParameter("entregaFrustrada");
+        if(entregaFrustrada.equals("1")) {
+            model.setEntregaFrustrada((byte) 0x1);
+            model.setDataHoraFrustracaoEntrega(new Date());
+        } else {
+            model.setEntregaFrustrada((byte) 0x0);
+        }
+        String cancelado = request.getParameter("cancelado");
+        if(cancelado.equals("1")) {
+            model.setCancelado((byte) 0x1);
+            model.setDataHoraCancelamento(new Date());
+        } else {
+            model.setCancelado((byte) 0x0);
+        }
     }
 
     @Override
