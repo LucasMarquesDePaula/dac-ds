@@ -7,7 +7,9 @@ package br.ufpr.tads.dac.ds.controller;
 
 import br.ufpr.tads.dac.ds.facede.CrudFacede;
 import br.ufpr.tads.dac.ds.facede.EntregaFacede;
+import br.ufpr.tads.dac.ds.model.Authenticable;
 import br.ufpr.tads.dac.ds.model.Entrega;
+import br.ufpr.tads.dac.ds.model.Funcionario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -36,6 +38,40 @@ public class EntregaController extends CrudController<Entrega> {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doPost(request, response);
+    }
+    
+    @Override
+    protected void processNotCrudRequest(HttpServletRequest request, HttpServletResponse response, NotCrudActionException actionException) {
+        try {
+            String action = actionException.getAction();
+            String[] pathParts = actionException.getPathParts();
+            Integer id = Integer.parseInt(pathParts[2]);
+            
+            Funcionario funcionario = null;
+            EntregaFacede facede = new EntregaFacede();
+
+            try {
+                funcionario = (Funcionario) request.getSession().getAttribute(Authenticable.class.getSimpleName());
+            } catch (Exception ignored) { }
+            
+            switch (action) {
+                case "confirm-delivery":
+                    request.setAttribute("model", facede.confirmarEntrega(id, funcionario, new Date()));
+                    request.setAttribute("message", "Entrega confirmada com sucesso!");
+                    break;
+                case "confirm-frustration":
+                    request.setAttribute("model", facede.confirmarFrustracao(id, new Date()));
+                    request.setAttribute("message", "Entrega frustrada! Digite uma justificativa.");
+                    break;
+                case "cancel-delivery":
+                    request.setAttribute("model", facede.cancelarEntrega(id, funcionario, new Date()));
+                    request.setAttribute("message", "Entrega cancelada com sucesso!");
+                    break;
+            }
+        } catch (Exception ex) {
+            request.setAttribute("message", ex.getMessage());
+            getLogger().debug("", ex);
+        }
     }
 
     @Override
