@@ -76,14 +76,14 @@
                                         <md-input-container md-has-password class="${empty messages.senha ? '' : 'md-input-invalid'}">
                                             <md-icon>lock</md-icon>
                                             <label>Senha</label>
-                                            <md-input name="senha" value="${messages.senha}"></md-input>
+                                            <md-input name="senha" value="${model.senha}"></md-input>
                                             <span class="md-error"><c:out value="${messages.senha}"/></span>
                                         </md-input-container>
                                     </md-layout>
                                     <md-layout>
                                         <md-input-container>
                                             <label for="select">Perfil</label>
-                                            <md-select name="gerente">
+                                            <md-select name="gerente" value="${model.gerente}">
                                                 <md-option value="0">Entregador</md-option>
                                                 <md-option value="1">Gerente</md-option>
                                             </md-select>
