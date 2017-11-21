@@ -48,7 +48,7 @@ public class EntregaController extends CrudController<Entrega> {
             Funcionario funcionario = null;
             EntregaFacede facede = new EntregaFacede();
             Entrega model = null;
-            
+
             Message message = null;
             Client client = null;
 
@@ -59,7 +59,15 @@ public class EntregaController extends CrudController<Entrega> {
 
             switch (action) {
                 case "confirm-delivery":
-                    request.setAttribute("model", facede.confirmarEntrega(id, funcionario, new Date()));
+                    model = facede.confirmarEntrega(id, funcionario, new Date());
+                    request.setAttribute("model", model);
+
+                    message = new Message();
+
+                    client = ClientBuilder.newClient();
+                    client.target(String.format("http://localhost:8080/lol/webresources/ws/delivery-done/%d", model.getPedidoId()))
+                            .request(MediaType.APPLICATION_JSON)
+                            .put(Entity.entity(message, MediaType.APPLICATION_JSON), Message.class);
                     request.setAttribute("message", "Entrega confirmada com sucesso!");
                     break;
                 case "confirm-frustration":
@@ -78,7 +86,8 @@ public class EntregaController extends CrudController<Entrega> {
                     request.setAttribute("message", "Entrega frustrada gravada com sucesso!");
                     break;
                 case "cancel-delivery":
-                    request.setAttribute("model", facede.cancelarEntrega(id, funcionario, new Date()));
+                    model = facede.cancelarEntrega(id, funcionario, new Date());
+                    request.setAttribute("model", model);
                     request.setAttribute("message", "Entrega cancelada com sucesso!");
                     break;
             }

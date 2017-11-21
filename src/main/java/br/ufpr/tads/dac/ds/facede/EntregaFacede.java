@@ -34,9 +34,9 @@ public class EntregaFacede extends CrudFacede<Entrega> {
             throw new IllegalOperationException("A entrega está cancelada.");
         }
 
-        if (entrega.getEntregaFrustrada() == 0x1) {
-            throw new IllegalOperationException("A entrega não pode ser confirmada.");
-        }
+//        if (entrega.getEntregaFrustrada() == 0x1) {
+//            throw new IllegalOperationException("A entrega não pode ser confirmada.");
+//        }
 
         entrega.setEntregue((byte) 0x1);
         entrega.setDataHoraEntrega(dataHora);
